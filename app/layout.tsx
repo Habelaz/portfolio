@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abel Portfolio",
+  title: "Abel Zereabruk - software developer",
   description: "minimalistc portolfio",
 };
 
