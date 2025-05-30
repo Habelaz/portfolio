@@ -8,7 +8,7 @@ import { FaLocationArrow } from 'react-icons/fa'
 
 const Hero = () => {
   return (
-    <div className='pb-20 pt-36' id="about">
+    <div className='pb-20 pt-30' id="about">
       <div>
         
         <Spotlight />
