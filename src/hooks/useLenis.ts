@@ -14,6 +14,11 @@ export function useLenis(containerRef: RefObject<HTMLDivElement | null>) {
       duration: 1.1,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      prevent: (node) => {
+        if (!(node instanceof HTMLElement)) return false
+        if (!node.classList.contains('section-inner-scroll')) return false
+        return window.matchMedia('(max-width: 899px)').matches
+      },
     })
     lenisRef.current = lenis
 
