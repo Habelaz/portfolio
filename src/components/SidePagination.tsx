@@ -6,7 +6,7 @@ interface SidePaginationProps {
   onTabChange: (tab: string) => void
 }
 
-const WRAPPER = 'hidden lg:flex fixed right-[clamp(6px,1vw,18px)] top-1/2 -translate-y-1/2 flex-col items-center gap-2 z-10'
+const WRAPPER = 'fixed bottom-6 left-1/2 -translate-x-1/2 flex flex-row items-center gap-2 z-10 lg:bottom-auto lg:top-1/2 lg:left-auto lg:right-[clamp(6px,1vw,18px)] lg:-translate-y-1/2 lg:translate-x-0 lg:flex-col'
 
 const DOT = [
   'relative w-2 h-2 rounded-full bg-faint border-none cursor-pointer p-0',

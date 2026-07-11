@@ -5,18 +5,24 @@ import { TABS } from '../data/tabs'
 interface TabNavProps {
   activeTab: string
   onTabChange: (tab: string) => void
+  variant?: 'sidebar' | 'stacked'
 }
 
-const TABSNav = 'flex flex-row gap-3 lg:flex-col lg:w-full lg:min-h-0'
+const TABSNavSidebar = 'flex flex-row gap-3 lg:flex-col lg:w-full lg:min-h-0'
+
+const TABSNavStacked = 'flex flex-col w-full gap-1'
 
 const TAB_BTN = [
   'flex items-center gap-[12px] bg-transparent border-none cursor-pointer text-left whitespace-nowrap',
-  'px-4 py-3 rounded-xl lg:pl-4.5',
+  'px-4 py-3 rounded-xl',
   'text-muted font-inter text-[clamp(0.875rem,1vw,1rem)] leading-none font-medium',
   'relative transition-colors duration-150 ease-out',
   'hover:text-text hover:bg-white/[0.03]',
-  'lg:py-2 lg:px-3.5',
 ].join(' ')
+
+const TAB_BTN_SIDEBAR = 'lg:pl-4.5 lg:py-2 lg:px-3.5'
+
+const TAB_BTN_STACKED = 'min-h-[44px] w-full'
 
 const TAB_BTN_ACTIVE = 'text-text !bg-accent-dim'
 
@@ -28,16 +34,22 @@ const TAB_INDICATOR = [
 
 const TAB_IDX = 'font-mono text-[clamp(0.6875rem,0.8vw,0.75rem)] text-faint w-[18px]'
 
-export default function TabNav({ activeTab, onTabChange }: TabNavProps) {
+export default function TabNav({ activeTab, onTabChange, variant = 'sidebar' }: TabNavProps) {
+  const isStacked = variant === 'stacked'
+
   return (
-    <nav className={TABSNav}>
+    <nav className={isStacked ? TABSNavStacked : TABSNavSidebar}>
       {TABS.map((tab) => (
         <button
           key={tab.id}
           onClick={() => onTabChange(tab.id)}
-          className={clsx(TAB_BTN, activeTab === tab.id && TAB_BTN_ACTIVE)}
+          className={clsx(
+            TAB_BTN,
+            isStacked ? TAB_BTN_STACKED : TAB_BTN_SIDEBAR,
+            activeTab === tab.id && TAB_BTN_ACTIVE
+          )}
         >
-          {activeTab === tab.id && (
+          {activeTab === tab.id && !isStacked && (
             <motion.div layoutId="tab-indicator" className={TAB_INDICATOR} />
           )}
           <span className={TAB_IDX}>{tab.index}</span>

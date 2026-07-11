@@ -1,6 +1,7 @@
 import { useRef, useCallback } from 'react'
 import { ThemeProvider } from './context/ThemeContext'
 import Sidebar from './components/Sidebar'
+import MobileTopBar from './components/MobileTopBar'
 import SidePagination from './components/SidePagination'
 import HomePanel from './components/HomePanel'
 import AboutPanel from './components/AboutPanel'
@@ -34,8 +35,11 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Sidebar activeTab={activeTab} onTabChange={scrollTo} />
-      <div ref={scrollRef} className="scroll-container">
+      <div className="hidden lg:block">
+        <Sidebar activeTab={activeTab} onTabChange={scrollTo} />
+      </div>
+      <MobileTopBar activeTab={activeTab} onTabChange={scrollTo} />
+      <div ref={scrollRef} className="scroll-container pt-16 lg:pt-0">
         <HomePanel />
         <AboutPanel />
         <CareerPanel />

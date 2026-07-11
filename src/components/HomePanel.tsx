@@ -15,7 +15,7 @@ const childItem = {
 
 const EYEBROW = 'font-mono text-[clamp(0.75rem,0.9vw,0.8125rem)] text-accent tracking-[0.06em] uppercase m-0 mb-3.5'
 
-const HEADING_ROW = 'flex flex-col sm:flex-row sm:items-center sm:justify-between sm:gap-4 mb-4.5'
+const HEADING_ROW = 'flex flex-wrap items-center justify-between gap-3 mb-4.5'
 
 const HEADING = 'font-sora text-[clamp(1.75rem,4vw,2.5rem)] font-semibold tracking-[-0.015em] m-0 leading-[1.2]'
 
