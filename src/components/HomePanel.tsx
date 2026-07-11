@@ -51,7 +51,7 @@ export default function HomePanel() {
   return (
     <section id="home" className="section">
       <motion.div
-        className="section-inner"
+        className="section-inner section-inner-scroll"
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.4 }}
