@@ -16,21 +16,19 @@ const SECTION_IDS = TABS.map((t) => t.id)
 
 function App() {
   const scrollRef = useRef<HTMLDivElement>(null)
-  const lenisRef = useLenis(scrollRef)
+  useLenis(scrollRef)
   const activeTab = useActiveSection(SECTION_IDS, scrollRef) as TabId
 
   const scrollTo = useCallback(
     (id: string) => {
       const el = document.getElementById(id)
       if (!el) return
-      const lenis = lenisRef.current
-      if (lenis) {
-        lenis.scrollTo(el, { duration: 1.0 })
-      } else {
-        el.scrollIntoView({ behavior: 'smooth' })
+      const container = scrollRef.current
+      if (container) {
+        container.scrollTo({ top: el.offsetTop, behavior: 'instant' })
       }
     },
-    [lenisRef]
+    []
   )
 
   return (
