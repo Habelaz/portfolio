@@ -15,7 +15,7 @@ const CONTACT_ITEM = [
   'bg-panel p-[clamp(16px,2vw,20px)_clamp(18px,2vw,22px)]',
   'no-underline text-inherit',
   'transition-[background] duration-150 block',
-  'hover:bg-[#151a21]',
+  'hover:bg-panel-hover',
 ].join(' ')
 
 const CONTACT_H3 = 'font-sora text-[clamp(0.875rem,1.1vw,1rem)] font-semibold m-0 mb-[clamp(4px,0.4vw,5px)]'

@@ -4,6 +4,7 @@
   --color-bg: var(--bg);
   --color-panel: var(--panel);
   --color-panel-border: var(--panel-border);
+  --color-panel-hover: var(--panel-hover);
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-faint: var(--faint);
@@ -25,6 +26,7 @@
   --faint: #4d5561;
   --accent: #7fb7a3;
   --accent-dim: rgba(127, 183, 163, 0.14);
+  --panel-hover: #181e27;
   --mono: 'JetBrains Mono', monospace;
   --sora: 'Sora', sans-serif;
   --inter: 'Inter', sans-serif;
@@ -39,6 +41,7 @@
   --faint: #9ea2aa;
   --accent: #4f8a72;
   --accent-dim: rgba(79, 138, 114, 0.12);
+  --panel-hover: #eae8e4;
 }
 
 @keyframes pulse {
@@ -194,6 +197,25 @@ html, body {
   justify-content: center;
 }
 
+/* Mobile: lock section height so Career/Projects scroll inside, not via snap */
+@media (max-width: 899px) {
+  .section {
+    height: calc(100dvh - 4rem);
+    min-height: calc(100dvh - 4rem);
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .section-inner-scroll {
+    max-height: 100%;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+}
+
 .section-inner {
   @apply w-full;
   max-width: 72ch;
@@ -210,10 +232,4 @@ html, body {
   .section-inner {
     padding: clamp(24px, 3vw, 48px) 0;
   }
-}
-
-.section-inner-scroll {
-  max-height: 100%;
-  overflow-y: auto;
-  overscroll-behavior: contain;
 }

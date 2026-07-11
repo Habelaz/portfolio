@@ -37,31 +37,31 @@ export default function ThemeSwitcher({ variant = 'icon-only' }: ThemeSwitcherPr
       <AnimatePresence mode="wait" initial={false}>
         {theme === 'dark' ? (
           <motion.span
-            key="moon"
+            key="sun"
             initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
             animate={{ rotate: 0, opacity: 1, scale: 1 }}
             exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
             className="flex items-center justify-center"
           >
-            <Moon size={16} />
+            <Sun size={16} />
           </motion.span>
         ) : (
           <motion.span
-            key="sun"
+            key="moon"
             initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
             animate={{ rotate: 0, opacity: 1, scale: 1 }}
             exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
             className="flex items-center justify-center"
           >
-            <Sun size={16} />
+            <Moon size={16} />
           </motion.span>
         )}
       </AnimatePresence>
       {isRow && (
         <span className={ROW_LABEL}>
-          {theme === 'dark' ? 'Dark mode' : 'Light mode'}
+          {theme === 'dark' ? 'Light mode' : 'Dark mode'}
         </span>
       )}
     </button>
