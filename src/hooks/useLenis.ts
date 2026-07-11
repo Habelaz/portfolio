@@ -10,6 +10,7 @@ export function useLenis(containerRef: RefObject<HTMLDivElement | null>) {
     const el = containerRef.current
     if (!el) return
 
+    const wrapper = el
     const mobileQuery = window.matchMedia(MOBILE_QUERY)
     let rafId = 0
 
@@ -24,8 +25,8 @@ export function useLenis(containerRef: RefObject<HTMLDivElement | null>) {
       if (mobileQuery.matches || lenisRef.current) return
 
       const lenis = new Lenis({
-        wrapper: el,
-        content: el,
+        wrapper: wrapper,
+        content: wrapper,
         duration: 1.1,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
