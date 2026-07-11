@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-border: var(--panel-border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-dim: var(--accent-dim);
+  --font-sora: 'Sora', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --breakpoint-lg: 900px;
+}
+
+:root {
+  /* Dark (default) */
+  --bg: #0a0d12;
+  --panel: #12161d;
+  --panel-border: #1d232d;
+  --text: #e6e8eb;
+  --muted: #8891a0;
+  --faint: #4d5561;
+  --accent: #7fb7a3;
+  --accent-dim: rgba(127, 183, 163, 0.14);
+  --mono: 'JetBrains Mono', monospace;
+  --sora: 'Sora', sans-serif;
+  --inter: 'Inter', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg: #f5f4f0;
+  --panel: #ffffff;
+  --panel-border: #e2e0dc;
+  --text: #14181f;
+  --muted: #5c6068;
+  --faint: #9ea2aa;
+  --accent: #4f8a72;
+  --accent-dim: rgba(79, 138, 114, 0.12);
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--accent-dim); }
+  50% { box-shadow: 0 0 0 5px var(--accent-dim); }
+}
+
+@keyframes icon-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+}
+
+body {
+  @apply bg-bg text-text font-inter min-h-screen m-0;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+*, *::before, *::after {
+  transition-property: background-color, color, border-color, text-decoration-color, outline-color, box-shadow;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+}
+
+/* Exclude transform from transition so hover states stay snappy */
+button, a, [role="button"] {
+  transition-property: background-color, color, border-color;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+}
+
+.cv-btn, .cv-btn::before {
+  transition-property: transform, background-color, color, border-color;
+  transition-duration: 200ms, 0.4s, 0.4s, 0.4s;
+  transition-timing-function: ease;
+}
+
+#root {
+  @apply flex flex-col w-full max-w-[min(1200px,100%)] mx-auto min-h-screen;
+  padding: clamp(16px, 2vw, 24px) clamp(20px, 3vw, 48px) 0;
+}
+
+@media (min-width: 900px) {
+  #root {
+    @apply flex-row;
+    padding-left: 0;
+  }
+}
+
+main {
+  @apply flex-1 flex justify-center min-w-0;
+  padding: clamp(24px, 3vw, 48px) clamp(16px, 3vw, 24px);
+}
+
+@media (min-width: 640px) {
+  main {
+    padding: clamp(24px, 3vw, 48px) clamp(20px, 3vw, 32px);
+  }
+}
+
+@media (min-width: 900px) {
+  main {
+    padding: clamp(24px, 3vw, 48px) 0 clamp(24px, 3vw, 48px) 0;
+  }
+}
+
+/* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--faint) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--faint);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* CV Button fill-sweep */
+.cv-btn {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cv-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 200ms ease;
+  z-index: -1;
+}
+
+.cv-btn:hover::before {
+  transform: scaleX(1);
+}
+
+.cv-btn:hover {
+  color: var(--bg);
+  border-color: var(--accent);
+  transition: color 200ms ease, border-color 200ms ease;
+}
+
+.cv-btn:hover .cv-icon {
+  animation: icon-bounce 600ms ease-in-out infinite;
+}
+
+/* Scroll container */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+.scroll-container {
+  height: 100dvh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: auto;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.section {
+  min-height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  justify-content: center;
+}
+
+.section-inner {
+  @apply w-full;
+  max-width: 72ch;
+  padding: clamp(24px, 3vw, 48px) clamp(16px, 3vw, 24px);
+}
+
+@media (min-width: 640px) {
+  .section-inner {
+    padding: clamp(24px, 3vw, 48px) clamp(20px, 3vw, 32px);
+  }
+}
+
+@media (min-width: 900px) {
+  .section-inner {
+    padding: clamp(24px, 3vw, 48px) 0;
+  }
+}
+
+.section-inner-scroll {
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
